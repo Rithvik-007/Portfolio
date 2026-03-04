@@ -1,0 +1,173 @@
+/* ═══════════════════════════════════════════
+   APP.CSS — Horizontal Side-Scroller Layout
+   ═══════════════════════════════════════════ */
+
+/* ─── Horizontal Scroll Container ─── */
+.h-scroll-container {
+  position: relative;
+  z-index: 1;
+  width: 100vw;
+  height: 100vh;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+.h-scroll-container::-webkit-scrollbar {
+  display: none;
+  /* Chrome/Safari */
+}
+
+.h-scroll-track {
+  display: flex;
+  width: fit-content;
+  height: 100vh;
+}
+
+.h-panel {
+  flex: 0 0 100vw;
+  width: 100vw;
+  height: 100vh;
+  scroll-snap-align: start;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 212, 255, 0.3) transparent;
+  position: relative;
+}
+
+.h-panel::-webkit-scrollbar {
+  width: 4px;
+}
+
+.h-panel::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.h-panel::-webkit-scrollbar-thumb {
+  background: rgba(0, 212, 255, 0.2);
+  border-radius: 4px;
+}
+
+/* ─── Section divider (vertical for horizontal layout) ─── */
+.h-panel::after {
+  content: '';
+  position: absolute;
+  top: 15%;
+  right: 0;
+  width: 1px;
+  height: 70%;
+  background: linear-gradient(180deg, transparent, var(--accent), var(--accent-2), transparent);
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+.h-panel:last-child::after {
+  display: none;
+}
+
+/* ─── Progress Track (bottom bar) ─── */
+.h-progress-track {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1100;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  padding: 10px 24px;
+  background: rgba(10, 10, 18, 0.75);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 40px;
+}
+
+.h-progress-dot {
+  position: relative;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 0;
+  z-index: 2;
+}
+
+.h-progress-dot:hover {
+  border-color: var(--accent);
+  transform: scale(1.3);
+}
+
+.h-progress-dot.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  box-shadow: 0 0 12px rgba(0, 212, 255, 0.5);
+  transform: scale(1.25);
+}
+
+.h-progress-dot.passed {
+  background: var(--accent-2);
+  border-color: var(--accent-2);
+}
+
+.h-progress-label {
+  position: absolute;
+  bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.2s;
+  pointer-events: none;
+  letter-spacing: 0.04em;
+}
+
+.h-progress-dot:hover .h-progress-label,
+.h-progress-dot.active .h-progress-label {
+  opacity: 1;
+  color: var(--accent);
+}
+
+.h-progress-fill {
+  display: none;
+  /* using dots instead of fill bar */
+}
+
+/* ─── Contact & Focus Overrides ─── */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.form-control:focus {
+  box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.15);
+  border-color: var(--accent);
+}
+
+.navbar-toggler:focus {
+  box-shadow: none;
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .h-progress-track {
+    gap: 16px;
+    padding: 8px 16px;
+    bottom: 16px;
+  }
+
+  .h-progress-dot {
+    width: 10px;
+    height: 10px;
+  }
+}

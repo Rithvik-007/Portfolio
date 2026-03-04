@@ -1,0 +1,275 @@
+# SDE / ML Portfolio — Implementation Plan
+
+Build a **single-page, scrollable portfolio website** for an SDE/ML-focused CS grad student at George Mason University (graduating 2026). The site should feel modern, interactive, and premium.
+
+---
+
+## Tech Stack
+
+| Layer | Choice | Why |
+|---|---|---|
+| Scaffold | **Vite + React** | Fast dev server, tiny bundle, zero-config |
+| Styling | **Bootstrap 5 + React-Bootstrap** | Responsive grid, ready-made components |
+| Animations | **AOS (Animate On Scroll)** | Scroll-triggered fade/slide effects |
+| Icons | **React Icons** | FontAwesome / Devicons in one package |
+| Popup modals | **React-Bootstrap `<Modal>`** | Native Bootstrap modal, no extra lib |
+| Deployment | **GitHub Pages** (free) | One command via `gh-pages` npm package |
+
+---
+
+## Site Architecture (single `index.html`, one React app)
+
+```
+┌─────────────────────────────────────────┐
+│  Navbar  (sticky, smooth-scroll links)  │
+├─────────────────────────────────────────┤
+│  Hero / About Me                        │
+├─────────────────────────────────────────┤
+│  Work Experience   → click card → Modal │
+├─────────────────────────────────────────┤
+│  Education                              │
+├─────────────────────────────────────────┤
+│  Projects          → click card → Modal │
+├─────────────────────────────────────────┤
+│  Achievements                           │
+├─────────────────────────────────────────┤
+│  Contact (form / links)                 │
+├─────────────────────────────────────────┤
+│  Footer                                 │
+└─────────────────────────────────────────┘
+```
+
+Each section scrolls into view; clicking a **card** opens a **Bootstrap Modal** with full details.
+
+---
+
+## What Makes It Catchy 🎯
+
+| Technique | Where |
+|---|---|
+| **Dark-mode hero** with gradient overlay & animated typing text | Hero section |
+| **Glassmorphism cards** (frosted glass effect) | Work, Projects |
+| **AOS scroll animations** (fade-up, zoom-in) | Every section |
+| **Hover scale + glow** on cards | Work, Projects, Achievements |
+| **Accent color scheme** — electric blue / teal on dark background | Global |
+| **Skill tag chips** with icons | Hero / About |
+| **Smooth scroll** via CSS `scroll-behavior: smooth` | Navbar links |
+| **Responsive** — mobile-first Bootstrap grid | Everywhere |
+
+---
+
+## File Structure
+
+```
+Portfolio/
+├── public/
+│   └── headshot.webp          ← your photo (we'll generate a placeholder)
+├── src/
+│   ├── main.jsx               ← entry point
+│   ├── App.jsx                ← root, section layout
+│   ├── App.css                ← global styles, dark theme, glassmorphism
+│   ├── data/
+│   │   └── profile.js         ← ALL your content (easy to edit in one place)
+│   ├── components/
+│   │   ├── Navbar.jsx
+│   │   ├── Hero.jsx
+│   │   ├── Work.jsx
+│   │   ├── Education.jsx
+│   │   ├── Projects.jsx
+│   │   ├── Achievements.jsx
+│   │   ├── Contact.jsx
+│   │   ├── Footer.jsx
+│   │   └── DetailModal.jsx   ← reusable popup for cards
+│   └── assets/                ← any images / icons
+├── index.html
+├── package.json
+└── vite.config.js
+```
+
+> [!TIP]
+> All your personal info lives in **`src/data/profile.js`** — a single JS object. You only ever edit that one file to update content.
+
+---
+
+## Setup Instructions (start to finish)
+
+### 1. Prerequisites
+
+```powershell
+# Install Node.js (LTS) if not already installed
+# Download from https://nodejs.org — version 20+ recommended
+node -v   # confirm installation
+npm -v
+```
+
+### 2. Create the project
+
+```powershell
+cd "d:\job search\Self-Learn\Portfolio"
+npm create vite@latest ./ -- --template react
+npm install
+```
+
+### 3. Install dependencies
+
+```powershell
+npm install bootstrap react-bootstrap react-icons aos
+```
+
+### 4. Run dev server
+
+```powershell
+npm run dev
+# Opens at http://localhost:5173
+```
+
+### 5. Build for production
+
+```powershell
+npm run build
+# Output goes to dist/
+```
+
+---
+
+## Free Deployment — GitHub Pages
+
+### Option A: GitHub Pages (recommended — 100% free)
+
+1. Create a GitHub repo (e.g. `portfolio`).
+2. Install the deploy helper:
+   ```powershell
+   npm install --save-dev gh-pages
+   ```
+3. Add to `package.json` → `scripts`:
+   ```json
+   "predeploy": "npm run build",
+   "deploy": "npx gh-pages -d dist"
+   ```
+4. Add `base` to `vite.config.js`:
+   ```js
+   export default defineConfig({
+     base: '/portfolio/',   // ← must match repo name
+     plugins: [react()],
+   })
+   ```
+5. Deploy:
+   ```powershell
+   npm run deploy
+   ```
+6. Your site is live at **`https://<username>.github.io/portfolio/`**.
+
+### Option B: Vercel (also free)
+
+1. Push repo to GitHub.
+2. Go to [vercel.com](https://vercel.com), sign in with GitHub.
+3. Import the repo → Vercel auto-detects Vite → click **Deploy**.
+4. Live URL is assigned automatically (custom domain supported).
+
+### Option C: Netlify (also free)
+
+1. Push repo to GitHub.
+2. Go to [netlify.com](https://netlify.com), connect repo.
+3. Build command: `npm run build`, publish dir: `dist`.
+4. Deploy.
+
+> [!IMPORTANT]
+> GitHub Pages is simplest for a personal portfolio. Vercel/Netlify are great if you later add a backend or serverless functions.
+
+---
+
+## Proposed Changes
+
+### Scaffold & Config
+
+#### [NEW] [vite.config.js](file:///d:/job%20search/Self-Learn/Portfolio/vite.config.js)
+Vite config with React plugin and `base` path for GitHub Pages.
+
+#### [NEW] [index.html](file:///d:/job%20search/Self-Learn/Portfolio/index.html)
+Generated by Vite scaffold — entry HTML with `<div id="root">`.
+
+---
+
+### Data Layer
+
+#### [NEW] [profile.js](file:///d:/job%20search/Self-Learn/Portfolio/src/data/profile.js)
+Single source of truth for all portfolio content: personal info, work experience, education, projects, achievements, contact links. Structured as a JS export so every component imports from here.
+
+---
+
+### Components
+
+#### [NEW] [App.jsx](file:///d:/job%20search/Self-Learn/Portfolio/src/App.jsx)
+Root component that stacks all sections vertically and initializes AOS.
+
+#### [NEW] [Navbar.jsx](file:///d:/job%20search/Self-Learn/Portfolio/src/components/Navbar.jsx)
+Sticky top navbar with smooth-scroll anchor links to each section. Collapses to hamburger on mobile.
+
+#### [NEW] [Hero.jsx](file:///d:/job%20search/Self-Learn/Portfolio/src/components/Hero.jsx)
+Full-viewport dark hero with name, tagline, animated typing effect, skill chips, and CTA buttons.
+
+#### [NEW] [Work.jsx](file:///d:/job%20search/Self-Learn/Portfolio/src/components/Work.jsx)
+Grid of glassmorphism cards for work experience. Clicking a card opens `DetailModal` with full description, tech stack, and highlights.
+
+#### [NEW] [Education.jsx](file:///d:/job%20search/Self-Learn/Portfolio/src/components/Education.jsx)
+Timeline-style layout showing degrees, university, GPA, and relevant coursework.
+
+#### [NEW] [Projects.jsx](file:///d:/job%20search/Self-Learn/Portfolio/src/components/Projects.jsx)
+Card grid for projects. Each card shows title, short description, and tech tags. Click opens `DetailModal` with full write-up and links (GitHub, demo).
+
+#### [NEW] [Achievements.jsx](file:///d:/job%20search/Self-Learn/Portfolio/src/components/Achievements.jsx)
+Cards or badges for certifications, awards, hackathons, publications. Click opens detail modal if needed.
+
+#### [NEW] [Contact.jsx](file:///d:/job%20search/Self-Learn/Portfolio/src/components/Contact.jsx)
+Contact form (or mailto link) + social icons (GitHub, LinkedIn, email).
+
+#### [NEW] [Footer.jsx](file:///d:/job%20search/Self-Learn/Portfolio/src/components/Footer.jsx)
+Minimal footer with copyright and social links.
+
+#### [NEW] [DetailModal.jsx](file:///d:/job%20search/Self-Learn/Portfolio/src/components/DetailModal.jsx)
+Reusable React-Bootstrap Modal that receives title, body content, tags, and links as props. Used by Work, Projects, and Achievements sections.
+
+---
+
+### Styling
+
+#### [NEW] [App.css](file:///d:/job%20search/Self-Learn/Portfolio/src/App.css)
+Global dark theme, glassmorphism card styles, gradient utilities, responsive tweaks, AOS overrides, and custom scrollbar styling.
+
+---
+
+## Verification Plan
+
+### Automated
+
+```powershell
+# 1. Dev server starts without errors
+npm run dev
+
+# 2. Production build succeeds
+npm run build
+```
+
+### Browser Verification (via browser tool)
+
+1. Open `http://localhost:5173` and verify:
+   - Navbar renders with all links
+   - Scroll to each section via navbar links
+   - Click a Work card → modal opens with details → close modal
+   - Click a Project card → modal opens → close
+   - Mobile viewport (375px width) — hamburger menu works
+   - All AOS animations trigger on scroll
+
+### Manual Verification (by you, the user)
+
+1. Run `npm run dev`, open browser, scroll through all sections.
+2. Click any card — does the popup show correct details?
+3. Resize the browser to phone width — does it look good?
+4. Run `npm run deploy` and visit the GitHub Pages URL.
+
+---
+
+## Next Step
+
+> [!IMPORTANT]
+> **Please share your resume** (or paste the key details) so I can fill in `profile.js` with your real work experience, projects, education, and achievements. I'll use placeholder data in the meantime, which you can easily swap out later.

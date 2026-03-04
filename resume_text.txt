@@ -1,0 +1,58 @@
+Rithvik Pranao Nagaraj
+571-668-0567 | rnagara2@gmu.edu | linkedin.com/in/rithvik-pranao | github.com/Rithvik-007
+Education
+George Mason University
+Fairfax, VA
+Master of Science in Computer Science
+May 2026
+Kumaraguru College of Technology
+Coimbatore, India
+Bachelor of Technology in Artificial Intelligence and Data Science
+May 2024
+Technical Skills
+Languages: Python, C#, R, JavaScript, SQL, HTML/CSS
+Frontend & Backend: React, Node.js, FastAPI, RESTful APIs, Microservices
+Machine Learning/Libraries: TensorFlow, PyTorch(CUDA), Scikit-learn, Hugging Face
+Databases: PostgreSQL, MySQL, SQLite, DynamoDB
+Cloud & DevOps: AWS, Docker, CI/CD
+Experience
+Research Assistant
+Jan 2025 – May 2025
+George Mason University
+Fairfax, VA
+• Automated scraping of over 10,000 cybersecurity posts using Python, pandas, BeautifulSoup, and requests,
+creating a dataset for further analysis
+• Built ETL pipelines in Python that cleaned and transformed raw text into JSON datasets, which were used to
+train large-language models
+• Cleaned and organized CVE IDs, exploit titles, and dates with regex and pandas for consistency.
+Teaching Assistant (Applied Deep Learning)
+Aug 2025 - Dec 2025
+George Mason University
+Fairfax, VA
+• Graded TensorFlow assignments for Applied Deep Learning, providing fast feedback to help students improve.
+• Assisted students with debugging models and understanding CNNs, RNNs, and Transformers.
+Unity Developer Intern (Blockchain)
+Aug 2023 – Nov 2023
+Tradala Solution
+Chennai, India
+• Migrated 2K+ lines of Node.js logic into a Unity SDK in C#, reducing partner integration time by 30%.
+• Integrated blockchain transactions with Nethereum to enable smart-contract calls in Unity, making in-game
+transactions possible and improving user experience.
+• Created developer documentation and API references to speed up partner onboarding.
+Projects
+HealthBridge - Full-Stack Telemedicine Platform
+• Designed RESTful APIs using FastAPI for doctor matching, user intake, and ML inference workflows.
+• Integrated ML inference (DistilBERT, Whisper) into backend APIs with sub-300ms response latency.
+• Built a React + Tailwind CSS frontend consuming backend APIs for real-time user interaction.
+MedSAM CUDA-Accelerated Medical Segmentation
+• Implemented CUDA-accelerated training pipelines in PyTorch to fine-tune MedSAM on Kvasir-SEG.
+• Fine-tuned ViT-based image encoder and mask decoder while freezing prompt encoder per MedSAM design.
+• Trained and evaluated multiple models (generalist, fine-tuned, scratch) using Dice+BCE loss.
+• Improved Dice score from 0.908 →0.9448 through domain-specific fine-tuning on GPU.
+Secure Artifact Registry — Full-Stack Backend System
+• Architected a secure registry for versioned ML artifacts with controlled sharing, reducing data sprawl.
+• Built authenticated REST APIs with JWT-based access control enforcing private, shared, and public visibility.
+• Designed schemas in SQLite and migrated to PostgreSQL via Docker for production deployment.
+• Implemented file upload and metadata pipelines with version tracking, improving reproducibility.
+Leadership & Achievements
+• 2nd Place — Hackathon, George Washington University (2025)
