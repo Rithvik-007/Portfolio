@@ -6,31 +6,31 @@ import { useEffect, useRef } from 'react';
    blasting, breaking — full chaos mode.
    ═══════════════════════════════════════════════════════════════ */
 
-// ─── Color palette ───
+// ─── Color palette (Yellow & Cream theme) ───
 const C = {
-    sky: '#060610',
-    stars: '#ffffff',
-    buildDark: '#0c0c1c',
-    buildMid: '#111128',
-    buildLight: '#181838',
-    buildAccent: '#1a1a45',
-    windowOff: '#141435',
-    windowOn: '#2a5585',
-    windowBright: '#3a88cc',
-    ground: '#0e0e1e',
-    groundLine: '#1c1c44',
+    sky: '#fef3c7',
+    stars: '#fbbf24',
+    buildDark: '#d4a574',
+    buildMid: '#deb887',
+    buildLight: '#e8cda0',
+    buildAccent: '#d2b48c',
+    windowOff: '#f0e4cc',
+    windowOn: '#f59e0b',
+    windowBright: '#d97706',
+    ground: '#c4a26a',
+    groundLine: '#a8894a',
     // Fighters
-    f1: '#00ccff', f2: '#ff3355', f3: '#33ff88', f4: '#ffaa22',
-    f5: '#cc44ff', f6: '#ff8844',
+    f1: '#b45309', f2: '#dc2626', f3: '#16a34a', f4: '#9333ea',
+    f5: '#0284c7', f6: '#d97706',
     // FX
-    bullet: '#ffee44',
-    bulletTrail: '#ff8800',
-    laser: '#00ffcc',
-    muzzle: '#ffffff',
-    expColors: ['#ff3300', '#ff6600', '#ff9900', '#ffcc00', '#ffff66', '#ffffff'],
-    smoke: ['#333344', '#444455', '#555566', '#666677'],
-    spark: ['#ffee44', '#ffffff', '#ff8800', '#ffcc00'],
-    debris: ['#554433', '#665544', '#776655', '#887766'],
+    bullet: '#f59e0b',
+    bulletTrail: '#ef4444',
+    laser: '#d97706',
+    muzzle: '#fff7ed',
+    expColors: ['#dc2626', '#ef4444', '#f59e0b', '#fbbf24', '#fde68a', '#ffffff'],
+    smoke: ['#a8a29e', '#b0a090', '#c0b0a0', '#d0c0b0'],
+    spark: ['#fbbf24', '#ffffff', '#f59e0b', '#fde68a'],
+    debris: ['#92400e', '#a0522d', '#b8860b', '#cd853f'],
 };
 
 // ─── Utility ───

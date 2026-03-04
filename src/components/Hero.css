@@ -20,7 +20,7 @@
 .hero-blob-1 {
     width: 500px;
     height: 500px;
-    background: radial-gradient(circle, #00d4ff, transparent 70%);
+    background: radial-gradient(circle, #fbbf24, transparent 70%);
     top: -100px;
     left: -120px;
 }
@@ -28,7 +28,7 @@
 .hero-blob-2 {
     width: 400px;
     height: 400px;
-    background: radial-gradient(circle, #7c3aed, transparent 70%);
+    background: radial-gradient(circle, #f87171, transparent 70%);
     bottom: -80px;
     right: -100px;
     animation-delay: -5s;
@@ -37,7 +37,7 @@
 .hero-blob-3 {
     width: 300px;
     height: 300px;
-    background: radial-gradient(circle, #00d4ff, #7c3aed, transparent 70%);
+    background: radial-gradient(circle, #fbbf24, #f87171, transparent 70%);
     top: 40%;
     left: 55%;
     animation-delay: -9s;
@@ -79,7 +79,7 @@
     font-weight: 900;
     line-height: 1.1;
     margin-bottom: 16px;
-    background: linear-gradient(135deg, #ffffff 30%, #00d4ff 70%, #7c3aed 100%);
+    background: linear-gradient(135deg, #292524 30%, #d97706 70%, #dc2626 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -207,4 +207,97 @@
     .hero-typing-wrap {
         font-size: 1.05rem;
     }
+}
+
+/* ─── About Me Side Card ─── */
+.hero-about-card {
+    background: rgba(255, 252, 240, 0.75);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(120, 80, 20, 0.1);
+    border-radius: 20px;
+    padding: 28px 24px;
+    box-shadow: 0 8px 32px rgba(120, 80, 20, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hero-about-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 48px rgba(120, 80, 20, 0.12);
+}
+
+.hero-about-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.hero-about-emoji {
+    font-size: 1.3rem;
+}
+
+.hero-about-story {
+    font-size: 0.85rem;
+    font-style: italic;
+    color: var(--text-secondary);
+    line-height: 1.65;
+    margin-bottom: 0;
+}
+
+.hero-about-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(217, 119, 6, 0.25), transparent);
+    margin: 16px 0;
+}
+
+.hero-about-row {
+    margin-bottom: 12px;
+}
+
+.hero-about-row:last-child {
+    margin-bottom: 0;
+}
+
+.hero-about-label {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+}
+
+.hero-about-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.hero-about-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 12px;
+    border-radius: 16px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    background: rgba(217, 119, 6, 0.1);
+    color: #b45309;
+    border: 1px solid rgba(217, 119, 6, 0.2);
+}
+
+.hero-about-skill {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 16px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    background: rgba(22, 163, 74, 0.08);
+    color: #16a34a;
+    border: 1px solid rgba(22, 163, 74, 0.18);
 }

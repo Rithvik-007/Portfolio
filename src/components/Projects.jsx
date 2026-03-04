@@ -87,6 +87,18 @@ export default function Projects() {
                 title={selected?.title}
                 data={selected}
             />
+
+            {/* Floating GitHub Bubble */}
+            <a
+                href={profile.github}
+                target="_blank"
+                rel="noreferrer"
+                className="floating-github-bubble"
+                onClick={(e) => e.stopPropagation()}
+            >
+                <FaGithub style={{ fontSize: '1.2rem' }} />
+                <span>Wanna see more like this? 🚀</span>
+            </a>
         </section>
     );
 }

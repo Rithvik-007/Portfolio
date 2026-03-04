@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { FaGithub, FaLinkedin, FaEnvelope, FaFileAlt } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaEnvelope, FaFileAlt, FaGamepad, FaFutbol } from 'react-icons/fa';
 import profile from '../data/profile';
 import './Hero.css';
 
@@ -54,8 +54,9 @@ export default function Hero() {
             <div className="hero-blob hero-blob-3" />
 
             <Container className="hero-container">
-                <Row className="align-items-center justify-content-center min-vh-100">
-                    <Col lg={8} className="text-center">
+                <Row className="align-items-center justify-content-center" style={{ minHeight: '100vh', paddingTop: 60 }}>
+                    {/* ─── Left: Main hero content ─── */}
+                    <Col lg={7} className="text-center text-lg-start">
                         <p className="hero-greeting" data-aos="fade-down">Hello, I'm</p>
                         <h1 className="hero-name" data-aos="fade-up" data-aos-delay="100">
                             {profile.name}
@@ -92,6 +93,37 @@ export default function Hero() {
                             <a href={`mailto:${profile.email}`}><FaEnvelope /></a>
                         </div>
                     </Col>
+
+                    {/* ─── Right: About Me side card ─── */}
+                    {profile.aboutMe && (
+                        <Col lg={4} className="d-none d-lg-block" data-aos="fade-left" data-aos-delay="400">
+                            <div className="hero-about-card">
+                                <h4 className="hero-about-title">
+                                    <span className="hero-about-emoji">⚡</span> Beyond the Code
+                                </h4>
+                                <p className="hero-about-story">{profile.aboutMe.story}</p>
+
+                                <div className="hero-about-divider" />
+
+                                <div className="hero-about-row">
+                                    <span className="hero-about-label">Hobbies</span>
+                                    <div className="hero-about-chips">
+                                        <span className="hero-about-chip"><FaGamepad /> Video Games</span>
+                                        <span className="hero-about-chip"><FaFutbol /> Goalkeeper</span>
+                                    </div>
+                                </div>
+
+                                <div className="hero-about-row">
+                                    <span className="hero-about-label">Soft Skills</span>
+                                    <div className="hero-about-chips">
+                                        {profile.aboutMe.transferableSkills.map((s) => (
+                                            <span key={s} className="hero-about-skill">{s}</span>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        </Col>
+                    )}
                 </Row>
             </Container>
         </section>

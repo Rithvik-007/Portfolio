@@ -1,22 +1,22 @@
 /* ═══════════════════════════════════════════
-   GLOBAL STYLES — Dark-theme Portfolio
+   GLOBAL STYLES — Bright Light-theme Portfolio
    ═══════════════════════════════════════════ */
 
 :root {
-  /* Palette */
-  --bg-primary: #0a0a0f;
-  --bg-secondary: #12121a;
-  --bg-card: rgba(255, 255, 255, 0.04);
-  --bg-card-hover: rgba(255, 255, 255, 0.08);
-  --accent: #00d4ff;
-  --accent-2: #7c3aed;
-  --accent-gradient: linear-gradient(135deg, #00d4ff, #7c3aed);
-  --text-primary: #e8e8f0;
-  --text-secondary: #9090a8;
-  --text-muted: #5a5a72;
-  --border-color: rgba(255, 255, 255, 0.06);
-  --glass-bg: rgba(255, 255, 255, 0.03);
-  --glass-border: rgba(255, 255, 255, 0.08);
+  /* Palette — Yellow & Cream */
+  --bg-primary: #fef9ef;
+  --bg-secondary: #fffdf7;
+  --bg-card: rgba(255, 252, 240, 0.8);
+  --bg-card-hover: rgba(255, 250, 230, 0.95);
+  --accent: #d97706;
+  --accent-2: #dc2626;
+  --accent-gradient: linear-gradient(135deg, #f59e0b, #dc2626);
+  --text-primary: #292524;
+  --text-secondary: #78716c;
+  --text-muted: #a8a29e;
+  --border-color: rgba(120, 80, 20, 0.08);
+  --glass-bg: rgba(255, 252, 240, 0.6);
+  --glass-border: rgba(120, 80, 20, 0.1);
 
   /* Typography */
   --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -82,8 +82,8 @@ body {
 
 /* Selection */
 ::selection {
-  background: rgba(0, 212, 255, 0.25);
-  color: #fff;
+  background: rgba(245, 158, 11, 0.25);
+  color: #292524;
 }
 
 /* ─── Section Defaults ─── */
@@ -114,8 +114,8 @@ body {
 
 /* ─── Glass Card ─── */
 .glass-card {
-  background: rgba(10, 10, 18, 0.75);
-  border: 1px solid var(--glass-border);
+  background: rgba(255, 252, 240, 0.8);
+  border: 1px solid rgba(120, 80, 20, 0.1);
   border-radius: 16px;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
@@ -124,6 +124,7 @@ body {
   cursor: pointer;
   position: relative;
   overflow: hidden;
+  box-shadow: 0 4px 24px rgba(120, 80, 20, 0.06);
 }
 
 .glass-card::before {
@@ -139,10 +140,10 @@ body {
 }
 
 .glass-card:hover {
-  background: rgba(14, 14, 26, 0.88);
-  border-color: rgba(0, 212, 255, 0.18);
+  background: rgba(255, 250, 230, 0.95);
+  border-color: rgba(217, 119, 6, 0.2);
   transform: translateY(-6px);
-  box-shadow: 0 20px 60px rgba(0, 212, 255, 0.08), 0 0 0 1px rgba(0, 212, 255, 0.08);
+  box-shadow: 0 20px 60px rgba(217, 119, 6, 0.1), 0 0 0 1px rgba(217, 119, 6, 0.08);
 }
 
 .glass-card:hover::before {
@@ -156,9 +157,9 @@ body {
   border-radius: 20px;
   font-size: 0.75rem;
   font-weight: 500;
-  background: rgba(0, 212, 255, 0.08);
-  color: var(--accent);
-  border: 1px solid rgba(0, 212, 255, 0.15);
+  background: rgba(217, 119, 6, 0.08);
+  color: #b45309;
+  border: 1px solid rgba(217, 119, 6, 0.18);
   margin: 3px 4px 3px 0;
   letter-spacing: 0.02em;
 }
@@ -170,15 +171,15 @@ body {
   border-radius: 24px;
   font-size: 0.82rem;
   font-weight: 500;
-  background: rgba(124, 58, 237, 0.1);
-  color: #b794f6;
-  border: 1px solid rgba(124, 58, 237, 0.2);
+  background: rgba(220, 38, 38, 0.06);
+  color: #dc2626;
+  border: 1px solid rgba(220, 38, 38, 0.15);
   margin: 4px 6px 4px 0;
   transition: var(--transition-fast);
 }
 
 .skill-tag:hover {
-  background: rgba(124, 58, 237, 0.2);
+  background: rgba(220, 38, 38, 0.12);
   transform: translateY(-2px);
 }
 
@@ -201,14 +202,14 @@ body {
 
 .btn-accent:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(0, 212, 255, 0.3);
+  box-shadow: 0 8px 30px rgba(245, 158, 11, 0.35);
   color: #fff;
 }
 
 .btn-outline {
   background: transparent;
   color: var(--accent);
-  border: 1px solid rgba(0, 212, 255, 0.3);
+  border: 1px solid rgba(217, 119, 6, 0.3);
   padding: 12px 32px;
   border-radius: 12px;
   font-weight: 600;
@@ -222,7 +223,7 @@ body {
 }
 
 .btn-outline:hover {
-  background: rgba(0, 212, 255, 0.08);
+  background: rgba(217, 119, 6, 0.06);
   border-color: var(--accent);
   transform: translateY(-2px);
   color: var(--accent);
@@ -230,18 +231,18 @@ body {
 
 /* ─── Modal Overrides ─── */
 .modal-content {
-  background: var(--bg-secondary) !important;
-  border: 1px solid var(--glass-border) !important;
+  background: #fffdf7 !important;
+  border: 1px solid rgba(120, 80, 20, 0.1) !important;
   border-radius: 20px !important;
   color: var(--text-primary) !important;
 }
 
 .modal-header {
-  border-bottom: 1px solid var(--border-color) !important;
+  border-bottom: 1px solid rgba(120, 80, 20, 0.08) !important;
 }
 
 .modal-footer {
-  border-top: 1px solid var(--border-color) !important;
+  border-top: 1px solid rgba(120, 80, 20, 0.08) !important;
 }
 
 .modal-backdrop.show {
@@ -249,15 +250,15 @@ body {
 }
 
 .btn-close {
-  filter: invert(1) grayscale(100%) brightness(200%);
+  filter: none;
 }
 
 /* ─── Navbar overrides ─── */
 .navbar {
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  background: rgba(10, 10, 15, 0.85) !important;
-  border-bottom: 1px solid var(--border-color);
+  background: rgba(255, 252, 240, 0.9) !important;
+  border-bottom: 1px solid rgba(120, 80, 20, 0.06);
   transition: var(--transition-medium);
   padding: 12px 0;
 }
@@ -284,7 +285,7 @@ body {
 .nav-link:hover,
 .nav-link.active {
   color: var(--accent) !important;
-  background: rgba(0, 212, 255, 0.06);
+  background: rgba(217, 119, 6, 0.06);
 }
 
 /* ─── Utility ─── */
@@ -316,5 +317,56 @@ body {
 
   .section-title {
     font-size: 1.8rem;
+  }
+}
+
+/* ─── Floating GitHub Bubble ─── */
+.floating-github-bubble {
+  position: absolute;
+  bottom: 80px;
+  right: 40px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background: var(--accent-gradient);
+  color: #fff;
+  font-size: 0.88rem;
+  font-weight: 600;
+  border-radius: 24px;
+  text-decoration: none;
+  box-shadow: 0 8px 30px rgba(217, 119, 6, 0.3);
+  animation: bubbleFloat 3s ease-in-out infinite;
+  z-index: 10;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.floating-github-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  right: 24px;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid #dc2626;
+}
+
+.floating-github-bubble:hover {
+  transform: scale(1.08) translateY(-4px);
+  box-shadow: 0 12px 40px rgba(217, 119, 6, 0.45);
+  color: #fff;
+}
+
+@keyframes bubbleFloat {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
   }
 }
