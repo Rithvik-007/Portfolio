@@ -680,8 +680,18 @@ export default function GameBackground() {
 
         loop();
 
+        const onVisibilityChange = () => {
+            if (document.hidden) {
+                cancelAnimationFrame(animId);
+            } else {
+                loop();
+            }
+        };
+        document.addEventListener('visibilitychange', onVisibilityChange);
+
         return () => {
             cancelAnimationFrame(animId);
+            document.removeEventListener('visibilitychange', onVisibilityChange);
             window.removeEventListener('resize', resize);
             window.removeEventListener('hscroll', onHScroll);
         };
