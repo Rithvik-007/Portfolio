@@ -22,7 +22,7 @@ export default function NavbarComponent({ sections = [], activeIndex = 0, onNavi
         >
             <Container className="justify-content-center">
                 <Navbar.Toggle aria-controls="main-nav">
-                    <HiMenu color="#00d4ff" size={26} />
+                    <HiMenu color="var(--accent)" size={26} />
                 </Navbar.Toggle>
                 <Navbar.Collapse id="main-nav">
                     <Nav className="mx-auto">

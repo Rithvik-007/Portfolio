@@ -8,9 +8,9 @@
   --bg-secondary: #fffdf7;
   --bg-card: rgba(255, 252, 240, 0.8);
   --bg-card-hover: rgba(255, 250, 230, 0.95);
-  --accent: #d97706;
-  --accent-2: #dc2626;
-  --accent-gradient: linear-gradient(135deg, #f59e0b, #dc2626);
+  --accent: #f97316;
+  --accent-2: #7c3aed;
+  --accent-gradient: linear-gradient(135deg, #fbbf24 0%, #f97316 45%, #7c3aed 100%);
   --text-primary: #292524;
   --text-secondary: #78716c;
   --text-muted: #a8a29e;

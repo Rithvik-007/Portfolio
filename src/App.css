@@ -34,7 +34,7 @@
   overflow-y: auto;
   overflow-x: hidden;
   scrollbar-width: thin;
-  scrollbar-color: rgba(0, 212, 255, 0.3) transparent;
+  scrollbar-color: rgba(249, 115, 22, 0.3) transparent;
   position: relative;
 }
 
@@ -47,7 +47,7 @@
 }
 
 .h-panel::-webkit-scrollbar-thumb {
-  background: rgba(0, 212, 255, 0.2);
+  background: rgba(249, 115, 22, 0.2);
   border-radius: 4px;
 }
 
@@ -151,7 +151,7 @@ button:focus-visible {
 }
 
 .form-control:focus {
-  box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.15);
+  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.15);
   border-color: var(--accent);
 }
 

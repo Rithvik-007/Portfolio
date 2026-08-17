@@ -6,15 +6,14 @@ import { useEffect, useRef } from 'react';
    blasting, breaking — full chaos mode.
    ═══════════════════════════════════════════════════════════════ */
 
-// ─── Color palette (Yellow & Cream theme) ───
+// ─── Color palette (Sunset Arcade theme) ───
 const C = {
-    sky: '#fef3c7',
     stars: '#fbbf24',
-    buildDark: '#d4a574',
-    buildMid: '#deb887',
-    buildLight: '#e8cda0',
-    buildAccent: '#d2b48c',
-    windowOff: '#f0e4cc',
+    buildDark: '#1a1225',
+    buildMid: '#241832',
+    buildLight: '#2f1f42',
+    buildAccent: '#150e1f',
+    windowOff: '#170f22',
     windowOn: '#f59e0b',
     windowBright: '#d97706',
     ground: '#c4a26a',
@@ -563,10 +562,23 @@ export default function GameBackground() {
         let animId;
         let scrollX = 0;
         let frame = 0;
+        let skyGradient;
+
+        // Deep indigo/plum at the top fading through orange to an amber glow at the horizon.
+        const buildSkyGradient = () => {
+            const g = ctx.createLinearGradient(0, 0, 0, canvas.height);
+            g.addColorStop(0, '#170f2e');
+            g.addColorStop(0.35, '#4c1d95');
+            g.addColorStop(0.65, '#c2410c');
+            g.addColorStop(0.85, '#f97316');
+            g.addColorStop(1, '#fbbf24');
+            return g;
+        };
 
         const resize = () => {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
+            skyGradient = buildSkyGradient();
         };
         resize();
         window.addEventListener('resize', resize);
@@ -640,7 +652,7 @@ export default function GameBackground() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
             // Sky
-            ctx.fillStyle = C.sky;
+            ctx.fillStyle = skyGradient;
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
             drawStars(ctx, stars, frame);
