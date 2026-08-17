@@ -54,7 +54,7 @@ export default function Hero() {
             <div className="hero-blob hero-blob-3" />
 
             <Container className="hero-container">
-                <Row className="align-items-center justify-content-center" style={{ minHeight: '100vh', paddingTop: 60 }}>
+                <Row className="align-items-center justify-content-center hero-row">
                     {/* ─── Left: Main hero content ─── */}
                     <Col lg={7} className="text-center text-lg-start">
                         <p className="hero-greeting" data-aos="fade-down">Hello, I'm</p>

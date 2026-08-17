@@ -96,6 +96,14 @@ body {
   justify-content: center;
 }
 
+/* Same fixed bottom-track clearance as .hero-row (see Hero.css) — applies
+   to every other panel (Work, Education, Projects, Achievements, Contact). */
+@media (min-width: 769px) {
+  .section {
+    padding-bottom: 150px;
+  }
+}
+
 .section-title {
   font-size: 2.4rem;
   font-weight: 800;
