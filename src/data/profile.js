@@ -6,8 +6,8 @@ const profile = {
 with a B.Tech in AI & Data Science. Passionate about building scalable
 full-stack systems, applying deep learning to real-world problems, and
 deploying ML-powered products end-to-end.`,
-  resumeUrl: "https://drive.google.com/file/d/1lOTZlKYti18Euk6Ctt8itezNx76TqUze/view?usp=sharing",
-  email: "rnagara2@gmu.edu",
+  resumeUrl: "https://drive.google.com/file/d/1zoeZ6Np23ZCMAw8_MN3Z4shnTlnJKUX-/view?usp=sharing",
+  email: "rnagarajobs@outlook.com",
   phone: "571-668-0567",
   github: "https://github.com/Rithvik-007",
   linkedin: "https://linkedin.com/in/rithvik-pranao",
@@ -27,8 +27,8 @@ decisions under pressure are everything, whether it's a penalty kick or a produc
   skills: [
     "Python", "C#", "R", "JavaScript", "SQL", "HTML/CSS",
     "React", "Node.js", "FastAPI", "RESTful APIs",
-    "TensorFlow", "PyTorch (CUDA)", "Scikit-learn", "Hugging Face",
-    "PostgreSQL", "MySQL", "SQLite", "DynamoDB",
+    "TensorFlow", "PyTorch (CUDA)", "Scikit-learn", "LangChain", "RAG",
+    "PostgreSQL", "MySQL", "SQLite", "DynamoDB", "ChromaDB",
     "AWS", "Docker", "CI/CD",
   ],
 
@@ -65,18 +65,20 @@ decisions under pressure are everything, whether it's a penalty kick or a produc
     },
     {
       id: 3,
-      role: "Unity Developer Intern (Blockchain)",
+      role: "Software Development Engineer Intern",
       company: "Tradala Solution",
-      duration: "Aug 2023 – Nov 2023",
+      duration: "Aug 2023 – Feb 2024",
       location: "Chennai, India",
-      shortDesc: "Migrated 2K+ lines of Node.js logic into a Unity SDK, cutting integration time by 30%.",
+      shortDesc: "Built a Unity C# SDK for blockchain integration and an async LangChain/ChromaDB RAG pipeline — cutting partner integration time 30% and document query latency 30%.",
       details: [
         "Migrated 2K+ lines of Node.js backend logic into a native Unity C# SDK, enabling game studios to integrate blockchain features directly inside the Unity Editor — reducing partner integration time by 30%.",
-        "Architected the SDK with a modular service layer (WalletService → TransactionService → ContractService) using dependency injection, making the codebase testable and extensible for future chains.",
         "Integrated Nethereum to enable smart-contract calls (ERC-20 transfers, NFT minting) directly from Unity game scripts, unlocking in-game economy features that drove a 20% increase in partner adoption.",
-        "Authored comprehensive developer documentation, API references, and quickstart guides that cut average partner onboarding time from 2 weeks to 3 days.",
+        "Authored developer documentation, API references, and quickstart guides that cut average partner onboarding time from 2 weeks to 3 days.",
+        "Separately engineered an async RAG pipeline using Python and LangChain, reducing document query latency by 30%.",
+        "Vectorized and indexed 2K+ pages of unstructured technical specs into ChromaDB using dense embedding models, enabling fast semantic search and low-latency query execution.",
+        "Implemented an async ingestion framework to process 200+ PDFs, generating metadata and populating vector stores with minimal I/O blocking.",
       ],
-      tech: ["C#", "Unity", "Node.js", "Nethereum", "Blockchain"],
+      tech: ["C#", "Unity", "Nethereum", "Node.js", "Python", "LangChain", "ChromaDB", "RAG"],
     },
   ],
 
