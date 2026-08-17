@@ -25,83 +25,87 @@ export default function App() {
   const scrollRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
+  // Shared across every entry point (wheel, keyboard, navbar, progress dots)
+  // so they can't race each other with stale local state.
+  const currentIndexRef = useRef(0);
+  const isScrollingRef = useRef(false);
+  const reducedMotionRef = useRef(false);
+  const goToRef = useRef(() => {});
+
   useEffect(() => {
-    AOS.init({ duration: 700, easing: 'ease-out-cubic', once: true, offset: 40 });
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    reducedMotionRef.current = prefersReducedMotion;
+    AOS.init({ duration: 700, easing: 'ease-out-cubic', once: true, offset: 40, disable: prefersReducedMotion });
   }, []);
 
-  // Smooth snap-scroll: wheel/keyboard → jump one panel at a time
   useEffect(() => {
     const container = scrollRef.current;
     if (!container) return;
-    let isScrolling = false;
-    let currentIdx = 0;
 
     const goTo = (idx) => {
       const clamped = Math.max(0, Math.min(idx, SECTIONS.length - 1));
-      if (clamped === currentIdx && isScrolling) return;
-      currentIdx = clamped;
-      isScrolling = true;
-      const panelWidth = window.innerWidth;
-      container.scrollTo({ left: clamped * panelWidth, behavior: 'smooth' });
-      // Unlock after animation completes
-      setTimeout(() => { isScrolling = false; }, 600);
+      currentIndexRef.current = clamped;
+      isScrollingRef.current = true;
+      setActiveIndex(clamped);
+      container.scrollTo({
+        left: clamped * window.innerWidth,
+        behavior: reducedMotionRef.current ? 'auto' : 'smooth',
+      });
     };
+    // Exposed via ref so click handlers (navbar, progress dots) can reuse
+    // the exact same locked navigation path as wheel/keyboard.
+    goToRef.current = goTo;
 
     const onWheel = (e) => {
       e.preventDefault();
-      if (isScrolling) return;
+      if (isScrollingRef.current) return;
       if (Math.abs(e.deltaY) < 15) return; // ignore tiny scroll
-      if (e.deltaY > 0) {
-        goTo(currentIdx + 1);
-      } else {
-        goTo(currentIdx - 1);
-      }
+      goTo(currentIndexRef.current + (e.deltaY > 0 ? 1 : -1));
     };
 
     const onKeyDown = (e) => {
+      const el = document.activeElement;
+      const isTyping = el && (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA' || el.isContentEditable);
+      if (isTyping) return;
+
       if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
         e.preventDefault();
-        goTo(currentIdx + 1);
+        goTo(currentIndexRef.current + 1);
       } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
         e.preventDefault();
-        goTo(currentIdx - 1);
+        goTo(currentIndexRef.current - 1);
       }
     };
 
+    // Reconciles activeIndex/lock after any scroll settles, including ones
+    // not initiated through goTo (e.g. a raw touch swipe or scrollbar drag).
+    const onScrollEnd = () => {
+      isScrollingRef.current = false;
+      const idx = Math.round(container.scrollLeft / window.innerWidth);
+      const clamped = Math.max(0, Math.min(idx, SECTIONS.length - 1));
+      currentIndexRef.current = clamped;
+      setActiveIndex(clamped);
+    };
+
+    // Parallax needs continuous scroll position, independent of section tracking.
+    const onScroll = () => {
+      window.dispatchEvent(new CustomEvent('hscroll', { detail: { scrollLeft: container.scrollLeft } }));
+    };
+
     container.addEventListener('wheel', onWheel, { passive: false });
+    container.addEventListener('scrollend', onScrollEnd);
+    container.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('keydown', onKeyDown);
 
     return () => {
       container.removeEventListener('wheel', onWheel);
+      container.removeEventListener('scrollend', onScrollEnd);
+      container.removeEventListener('scroll', onScroll);
       window.removeEventListener('keydown', onKeyDown);
     };
   }, []);
 
-  // Track active section based on scroll position
-  useEffect(() => {
-    const container = scrollRef.current;
-    if (!container) return;
-
-    const onScroll = () => {
-      const scrollLeft = container.scrollLeft;
-      const panelWidth = window.innerWidth;
-      const idx = Math.round(scrollLeft / panelWidth);
-      setActiveIndex(Math.max(0, Math.min(idx, SECTIONS.length - 1)));
-
-      // Dispatch custom event for GameBackground parallax
-      window.dispatchEvent(new CustomEvent('hscroll', { detail: { scrollLeft } }));
-    };
-
-    container.addEventListener('scroll', onScroll, { passive: true });
-    return () => container.removeEventListener('scroll', onScroll);
-  }, []);
-
-  const scrollToSection = (index) => {
-    const container = scrollRef.current;
-    if (!container) return;
-    const panelWidth = window.innerWidth;
-    container.scrollTo({ left: index * panelWidth, behavior: 'smooth' });
-  };
+  const scrollToSection = (index) => goToRef.current(index);
 
   return (
     <>
