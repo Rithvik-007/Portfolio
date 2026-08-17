@@ -6,7 +6,7 @@ const profile = {
 with a B.Tech in AI & Data Science. Passionate about building scalable
 full-stack systems, applying deep learning to real-world problems, and
 deploying ML-powered products end-to-end.`,
-  resumeUrl: "https://drive.google.com/file/d/1zoeZ6Np23ZCMAw8_MN3Z4shnTlnJKUX-/view?usp=sharing",
+  resumeUrl: `${import.meta.env.BASE_URL}resume.pdf`,
   email: "rnagarajobs@outlook.com",
   phone: "571-668-0567",
   github: "https://github.com/Rithvik-007",
@@ -121,7 +121,6 @@ decisions under pressure are everything, whether it's a penalty kick or a produc
       ],
       tech: ["FastAPI", "React", "DistilBERT", "Whisper", "Tailwind CSS"],
       github: "https://github.com/Rithvik-007/HealthBridge-AI",
-      demo: "#",
     },
     {
       id: 2,
@@ -135,21 +134,19 @@ decisions under pressure are everything, whether it's a penalty kick or a produc
       ],
       tech: ["PyTorch", "CUDA", "ViT", "MedSAM", "Medical Imaging"],
       github: "https://github.com/Rithvik-007/Fine-Tuning-of-MedSAM-for-Polyp-Segmentation",
-      demo: "#",
     },
     {
       id: 3,
-      title: "Secure Artifact Registry — Full-Stack Backend System",
-      shortDesc: "Versioned ML artifact registry with JWT auth and Docker-deployed PostgreSQL.",
+      title: "FlowBoard — Real-Time Project & Task Management",
+      shortDesc: "Full-stack Kanban board with real-time WebSocket sync, JWT auth, and role-based access control.",
       details: [
-        "Architected a secure registry for versioned ML artifacts with controlled sharing, reducing data sprawl.",
-        "Built authenticated REST APIs with JWT-based access control enforcing private, shared, and public visibility.",
-        "Designed schemas in SQLite and migrated to PostgreSQL via Docker for production deployment.",
-        "Implemented file upload and metadata pipelines with version tracking, improving reproducibility.",
+        "Built a real-time collaborative project management board (Angular 20 + FastAPI) supporting role-based access control (Owner, Admin, Member) across projects.",
+        "Implemented a drag-and-drop Kanban board with hierarchical tasks/subtasks and threaded comments, synced instantly across connected clients via WebSockets.",
+        "Designed JWT + bcrypt authentication and PostgreSQL (Neon) schemas via SQLAlchemy/Pydantic, with automated test coverage across backend services.",
       ],
-      tech: ["REST APIs", "JWT", "PostgreSQL", "Docker", "SQLite"],
-      github: "https://github.com/Rithvik-007/secure-artifact-registry",
-      demo: "#",
+      tech: ["Angular", "FastAPI", "PostgreSQL", "WebSockets", "JWT", "SQLAlchemy"],
+      github: "https://github.com/Rithvik-007/Flow-board",
+      demo: "https://flowboard-prod.netlify.app",
     },
     {
       id: 4,
@@ -164,7 +161,19 @@ decisions under pressure are everything, whether it's a penalty kick or a produc
       ],
       tech: ["PyTorch", "Transformers", "Quantization", "ESP32", "Edge AI"],
       github: "https://github.com/Rithvik-007/tiny-transformer-esp32",
-      demo: "#",
+    },
+    {
+      id: 5,
+      title: "Diffusion Models Beat GANs — ADM Reimplementation",
+      shortDesc: "Reimplemented the ADM diffusion architecture on a single 6GB-VRAM GPU, comparing latent vs. pixel-space training.",
+      details: [
+        "Reimplemented the ADM (\"Diffusion Models Beat GANs\") architecture from the original paper as a CS575 final project, adapting a multi-GPU reference implementation to run on a single RTX 3060 (6GB VRAM).",
+        "Trained a ~115M-parameter UNet in latent space using Stability AI's SD-VAE encoder with FP16 mixed precision and 8-bit Adam, comparing against pixel-space training under the same VRAM budget.",
+        "Achieved an 8.8x training speedup via latent-space training, and a 6.1x inference speedup using DDIM sampling with TensorRT compilation.",
+        "Implemented classifier-free guidance and benchmarking tooling for CIFAR-10 image generation.",
+      ],
+      tech: ["PyTorch", "Diffusion Models", "DDIM", "TensorRT", "CUDA"],
+      github: "https://github.com/Rithvik-007/Diffusion_beats_GANs",
     },
   ],
 
