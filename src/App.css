@@ -159,16 +159,44 @@ button:focus-visible {
   box-shadow: none;
 }
 
-/* ─── Responsive ─── */
+/* ─── Responsive: vertical stacked fallback ───
+   Wheel/keyboard-driven horizontal snap-scroll has no reliable touch
+   equivalent, and nesting a horizontally-scrolling container with
+   independently vertically-scrolling panels is a known pain point on
+   touch browsers. Below 768px, drop both axes of custom scroll
+   handling and let the page scroll normally top-to-bottom instead. */
 @media (max-width: 768px) {
-  .h-progress-track {
-    gap: 16px;
-    padding: 8px 16px;
-    bottom: 16px;
+  .h-scroll-container {
+    width: 100%;
+    height: auto;
+    overflow: visible;
+    scroll-snap-type: none;
   }
 
-  .h-progress-dot {
-    width: 10px;
-    height: 10px;
+  .h-scroll-track {
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+  }
+
+  .h-panel {
+    flex: 1 0 auto;
+    width: 100%;
+    height: auto;
+    min-height: 100vh;
+    scroll-snap-align: none;
+    overflow-y: visible;
+    overflow-x: visible;
+  }
+
+  .h-panel::after {
+    display: none;
+  }
+
+  /* Section-progress dots track horizontal-scroll position, which no
+     longer applies once the layout is a normal vertical stack — the
+     navbar already covers jump-to-section navigation on mobile. */
+  .h-progress-track {
+    display: none;
   }
 }

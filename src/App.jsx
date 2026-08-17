@@ -30,7 +30,18 @@ export default function App() {
   const currentIndexRef = useRef(0);
   const isScrollingRef = useRef(false);
   const reducedMotionRef = useRef(false);
+  const isMobileRef = useRef(false);
   const goToRef = useRef(() => {});
+
+  // Below 768px, App.css falls back to a normal vertical stack (no
+  // horizontal scroll to drive) — see the mobile responsive block there.
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 768px)');
+    const update = () => { isMobileRef.current = mq.matches; };
+    update();
+    mq.addEventListener('change', update);
+    return () => mq.removeEventListener('change', update);
+  }, []);
 
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -45,12 +56,17 @@ export default function App() {
     const goTo = (idx) => {
       const clamped = Math.max(0, Math.min(idx, SECTIONS.length - 1));
       currentIndexRef.current = clamped;
-      isScrollingRef.current = true;
       setActiveIndex(clamped);
-      container.scrollTo({
-        left: clamped * window.innerWidth,
-        behavior: reducedMotionRef.current ? 'auto' : 'smooth',
-      });
+
+      const behavior = reducedMotionRef.current ? 'auto' : 'smooth';
+      if (isMobileRef.current) {
+        // No horizontal scroll to drive in the mobile stacked layout —
+        // jump to the section's normal document position instead.
+        document.getElementById(SECTIONS[clamped].id)?.scrollIntoView({ behavior, block: 'start' });
+        return;
+      }
+      isScrollingRef.current = true;
+      container.scrollTo({ left: clamped * window.innerWidth, behavior });
     };
     // Exposed via ref so click handlers (navbar, progress dots) can reuse
     // the exact same locked navigation path as wheel/keyboard.

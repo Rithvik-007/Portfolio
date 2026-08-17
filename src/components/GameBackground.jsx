@@ -1,4 +1,7 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
+
+const MOBILE_BREAKPOINT = '(max-width: 768px)';
+const MOBILE_BANNER_HEIGHT = 260;
 
 /* ═══════════════════════════════════════════════════════════════
    GameBackground v2 — INTENSE retro pixel-art battlefield
@@ -555,6 +558,18 @@ function drawStars(ctx, stars, frame) {
 // ═══════════════════════════════════════
 export default function GameBackground() {
     const canvasRef = useRef(null);
+    const [isMobile, setIsMobile] = useState(() => window.matchMedia(MOBILE_BREAKPOINT).matches);
+
+    // Below 768px the horizontal snap-scroll layout falls back to a normal
+    // vertical stack (see App.css), so the full-bleed fixed canvas becomes
+    // a shorter banner that scrolls away with the page instead of covering
+    // the whole viewport underneath every section.
+    useEffect(() => {
+        const mq = window.matchMedia(MOBILE_BREAKPOINT);
+        const update = () => setIsMobile(mq.matches);
+        mq.addEventListener('change', update);
+        return () => mq.removeEventListener('change', update);
+    }, []);
 
     useEffect(() => {
         const canvas = canvasRef.current;
@@ -577,7 +592,7 @@ export default function GameBackground() {
 
         const resize = () => {
             canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+            canvas.height = isMobile ? MOBILE_BANNER_HEIGHT : window.innerHeight;
             skyGradient = buildSkyGradient();
         };
         resize();
@@ -707,18 +722,18 @@ export default function GameBackground() {
             window.removeEventListener('resize', resize);
             window.removeEventListener('hscroll', onHScroll);
         };
-    }, []);
+    }, [isMobile]);
 
     return (
         <canvas
             ref={canvasRef}
             id="game-background"
             style={{
-                position: 'fixed',
+                position: isMobile ? 'absolute' : 'fixed',
                 top: 0,
                 left: 0,
                 width: '100vw',
-                height: '100vh',
+                height: isMobile ? `${MOBILE_BANNER_HEIGHT}px` : '100vh',
                 zIndex: 0,
                 pointerEvents: 'none',
                 opacity: 0.22,

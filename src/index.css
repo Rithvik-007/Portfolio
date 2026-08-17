@@ -318,6 +318,14 @@ body {
   .section-title {
     font-size: 1.8rem;
   }
+
+  /* App.css switches .h-scroll-container to a normal vertical stack at
+     this breakpoint — let the document itself scroll instead of
+     clipping everything to a fixed 100vh horizontal viewport. */
+  body {
+    overflow-y: auto;
+    height: auto;
+  }
 }
 
 /* ─── Floating GitHub Bubble ─── */
