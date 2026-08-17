@@ -14,12 +14,11 @@ deploying ML-powered products end-to-end.`,
 
   /* ─── About Me (Personal Story) ─── */
   aboutMe: {
-    story: `When I'm not building full-stack systems or training ML models, you'll find me
-between the goalposts on the football (soccer) pitch — diving, saving, and leading
-the backline. I've been a goalkeeper since I was a kid, and it taught me that split-second
-decisions under pressure are everything, whether it's a penalty kick or a production bug at 2 AM.`,
-    hobbies: ["Video Games", "Football (Soccer)"],
-    sports: "Football (Soccer) — Goalkeeper",
+    story: `When I'm not building full-stack systems or training ML models, there's a good
+chance I'm playing something — I actually got into programming through building things
+in Unity and messing with PC hardware, years before I ever touched machine learning.
+That's part of why this site looks the way it does.`,
+    hobbies: ["Video Games"],
     transferableSkills: ["Teamwork", "Collaboration", "Adaptability", "Leadership under pressure"],
   },
 

@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { FaGithub, FaLinkedin, FaEnvelope, FaFileAlt, FaGamepad, FaFutbol } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaEnvelope, FaFileAlt, FaGamepad } from 'react-icons/fa';
 import profile from '../data/profile';
 import './Hero.css';
 
@@ -109,7 +109,6 @@ export default function Hero() {
                                     <span className="hero-about-label">Hobbies</span>
                                     <div className="hero-about-chips">
                                         <span className="hero-about-chip"><FaGamepad /> Video Games</span>
-                                        <span className="hero-about-chip"><FaFutbol /> Goalkeeper</span>
                                     </div>
                                 </div>
 
